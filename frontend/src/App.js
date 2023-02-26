@@ -7,7 +7,7 @@ import {TopHeading, Footer} from "./components/staticTags";
 
 
 const URL = 'http://127.0.0.1:8000/'
-const URN_USERS = 'api/users/'
+const URN_USERS = 'users/'
 
 class App extends React.Component {
     constructor(props) {
