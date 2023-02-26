@@ -20,7 +20,7 @@ class App extends React.Component {
     componentDidMount() {
         axios.get(`${URL}${URN_USERS}`)
             .then(response => {
-                const users = response.data
+                const users = response.data.results
                 this.setState(
                     {
                         'users': users

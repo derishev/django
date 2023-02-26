@@ -1,29 +1,33 @@
-from rest_framework.serializers import HyperlinkedModelSerializer, StringRelatedField
+from django.contrib.auth import get_user_model
+from rest_framework import serializers
 
 from users.serializers import CustomUserModelSerializer
 from .models import Project, ToDo
+from abc import ABC
 
 
-class ProjectModelSerializer(HyperlinkedModelSerializer):
-    users = StringRelatedField(many=True)
+class UserListingField(serializers.RelatedField, ABC):
+    def to_representation(self, value):
+        return f'{value.get_username()}'
+
+    def to_internal_value(self, data):
+        obj = get_user_model().objects.get(username=data)
+        return obj
+
+
+class ProjectModelSerializer(serializers.HyperlinkedModelSerializer):
+    users = UserListingField(many=True,
+                             queryset=get_user_model().objects.all())
 
     class Meta:
         model = Project
         fields = '__all__'
 
-    def create(self, validated_data):
-        project_obj = super().create(validated_data)
-        project_obj.users.add(self.context.get('user'))
-        return project_obj
 
-
-class ToDoModelSerializer(HyperlinkedModelSerializer):
+class ToDoModelSerializer(serializers.HyperlinkedModelSerializer):
     author = CustomUserModelSerializer(read_only=True)
+    is_active = serializers.BooleanField(read_only=True)
 
     class Meta:
         model = ToDo
-        exclude = ('is_active',)
-
-    def create(self, validated_data):
-        validated_data['author'] = self.context.get('user')
-        return super().create(validated_data)
+        fields = '__all__'
