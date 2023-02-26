@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'users.apps.UsersConfig',
     'projects.apps.ProjectsConfig',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +59,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+if not DEBUG:
+    MIDDLEWARE += [
+        'middleware.Process500',
+    ]
 
 ROOT_URLCONF = 'todo.urls'
 
