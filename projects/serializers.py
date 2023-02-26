@@ -15,7 +15,7 @@ class UserListingField(serializers.RelatedField, ABC):
         return obj
 
 
-class ProjectModelSerializer(serializers.HyperlinkedModelSerializer):
+class ProjectModelSerializer(serializers.ModelSerializer):
     users = UserListingField(many=True,
                              queryset=get_user_model().objects.all())
 

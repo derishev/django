@@ -1,10 +1,14 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 
 from .models import Project, ToDo
 
 
 @admin.register(Project)
-class ProjectAdmin(admin.ModelAdmin):
+class CustomUserAdmin(UserAdmin):
+    add_fieldsets = UserAdmin.add_fieldsets + (
+        (None, {'fields': ('email',)}),
+    )   # Expanding the list of fields to display in the form
     list_display = ('id', 'name', 'href',)
     list_display_links = ('id', 'name',)
     search_fields = ('name',)
