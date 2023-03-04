@@ -1,68 +1,74 @@
 import React from 'react'
 // ----------------------------------------------------------------------------
 
-const UserItem = ({item}) => {
+const TodoItem = ({item}) => {
     return (
         <tr>
-            <td scope={"row"}>
-                {item.username}
+            <td>
+                {item.author.username}
             </td>
             <td>
-                {item.firstName}
+                {item.text}
             </td>
             <td>
-                {item.lastName}
+                {item.createdAt}
             </td>
             <td>
-                {item.email}
+                {item.updatedAt}
+            </td>
+            <td>
+                {item.project}
             </td>
         </tr>
     )
 }
 
 
-class UserList extends React.Component {
+class TodoList extends React.Component {
     state = {
         isLoaded: false,
-        users: []
+        todos: []
     }
 
     componentDidMount() {
-        fetch('http://127.0.0.1:8000/users/')
+        fetch('http://127.0.0.1:8000/todos/')
             .then(response => response.json())
             .then(
                 (res) => {
                     this.setState({
                         isLoaded: true,
-                        users: res.results
+                        todos: res.results
                     });
                 }
             ).catch(error => console.log(error))
     }
 
     render() {
-        const items = this.state.users;
+        const items = this.state.todos;
         return (
             <div className={"container"}>
                 <table className={"table table-bordered table-hover"}>
                     <thead className={"table-light"}>
                     <tr>
                         <th scope={"col"}>
-                            Username
+                            Author
                         </th>
                         <th scope={"col"}>
-                            First name
+                            Text
                         </th>
                         <th scope={"col"}>
-                            Last name
+                            createdAt
                         </th>
                         <th scope={"col"}>
-                            Email
+                            updatedAt
+                        </th>
+                        <th scope={"col"}>
+                            project
                         </th>
                     </tr>
                     </thead>
                     <tbody>
-                    {items.map((item, index) => <UserItem item={item} key={index}/>)}
+                    {items.map((item, index) => <TodoItem item={item} key={index}/>)}
                     </tbody>
                 </table>
             </div>
@@ -71,4 +77,4 @@ class UserList extends React.Component {
 }
 
 // ----------------------------------------------------------------------------
-export default UserList;
+export default TodoList;
