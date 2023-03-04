@@ -12,6 +12,6 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterModelOptions(
             name='customuser',
-            options={'ordering': ('-date_joined',), 'verbose_name': 'пользователя', 'verbose_name_plural': 'пользователи'},
+            options={'ordering': ('date_joined',), 'verbose_name': 'пользователя', 'verbose_name_plural': 'пользователи'},
         ),
     ]
