@@ -26,7 +26,7 @@ class ToDo(models.Model):
     author = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,
-        related_name='todo',
+        related_name='todos',
         verbose_name='АВТОР'
     )
     is_active = models.BooleanField(default=True, verbose_name='ПРИЗНАК ОТКРЫТОСТИ', db_index=True)

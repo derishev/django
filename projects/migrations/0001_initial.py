@@ -22,10 +22,6 @@ class Migration(migrations.Migration):
                 ('href', models.URLField(verbose_name='ССЫЛКА НА РЕПОЗИТОРИЙ')),
                 ('users', models.ManyToManyField(to=settings.AUTH_USER_MODEL)),
             ],
-            options={
-                'verbose_name': 'проект',
-                'verbose_name_plural': 'проекты',
-            },
         ),
         migrations.CreateModel(
             name='ToDo',
@@ -35,12 +31,8 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='СОЗДАНО')),
                 ('updated_at', models.DateTimeField(auto_now=True, verbose_name='ОБНОВЛЕНО')),
                 ('is_active', models.BooleanField(db_index=True, default=False, verbose_name='ПРИЗНАК АКТИВНОСТИ')),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='todo', to=settings.AUTH_USER_MODEL, verbose_name='АВТОР')),
                 ('project', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='projects.project', verbose_name='ПРОЕКТ')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='todo', to=settings.AUTH_USER_MODEL, verbose_name='АВТОР')),
             ],
-            options={
-                'verbose_name': 'заметку',
-                'verbose_name_plural': 'заметки',
-            },
         ),
     ]
