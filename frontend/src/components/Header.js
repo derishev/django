@@ -1,9 +1,9 @@
 import {NavLink} from "react-router-dom";
 import React from "react";
 
-function Header() {
+export default function Header() {
     return (
-        <div className={"container"}>
+        <div className={"header container"}>
             <nav className={"navbar navbar-expand-lg navbar-light fw-bolder"}>
                 <ul className={"navbar-nav me-auto mb-2 mb-lg-0"}>
                     <li className={"nav-item"}>
@@ -20,5 +20,3 @@ function Header() {
         </div>
     )
 }
-
-export default Header;
