@@ -14,7 +14,7 @@ from users.views import CustomUserViewSet
 class TestUserViewSet(TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.BASE_URL = '/users/'  # When working with APIRequestFactory, the path is not important
+        cls.BASE_URL = '/api/users/'  # When working with APIRequestFactory, the path is not important
         cls.data_user = dict(username='user', email='user@mail.com', password='user123456')
         cls.data_update_user = dict(username='newUser', email='newUser@mail.com')
         cls.data_admin = dict(username='admin', email='admin@mail.com', password='admin123')
@@ -82,7 +82,7 @@ class TestUserViewSet(TestCase):
 class TestProjectViewSet(TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.BASE_URL = '/projects/'  # When working with APIRequestFactory, the path is not important
+        cls.BASE_URL = '/api/projects/'  # When working with APIRequestFactory, the path is not important
         cls.data_user = dict(username='user', email='user@mail.com', password='user123456')
         cls.data_admin = dict(username='admin', email='admin@mail.com', password='admin123')
 
@@ -131,7 +131,7 @@ class TestProjectViewSet(TestCase):
 class TestTodoViewSet(rft.APITestCase):
     @classmethod
     def setUpClass(cls):
-        cls.BASE_URL = '/todos/'
+        cls.BASE_URL = '/api/todos/'
         cls.data_user = dict(username='user', email='user@mail.com', password='user123456')
         cls.data_admin = dict(username='admin', email='admin@mail.com', password='admin123')
 

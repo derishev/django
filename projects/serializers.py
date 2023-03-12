@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from users.serializers import CustomUserModelSerializer
+from users.serializers import CustomUserSerializer
 from .models import Project, ToDo
 from abc import ABC
 
@@ -15,9 +15,8 @@ class UserListingField(serializers.RelatedField, ABC):
         return obj
 
 
-class ProjectModelSerializer(serializers.ModelSerializer):
-    users = UserListingField(many=True,
-                             queryset=get_user_model().objects.all())
+class ProjectSerializer(serializers.ModelSerializer):
+    users = UserListingField(many=True, queryset=get_user_model().objects.all())
 
     class Meta:
         model = Project
@@ -25,7 +24,7 @@ class ProjectModelSerializer(serializers.ModelSerializer):
 
 
 class ToDoViewingSerializer(serializers.HyperlinkedModelSerializer):
-    author = CustomUserModelSerializer(read_only=True)
+    author = CustomUserSerializer(read_only=True)
 
     class Meta:
         model = ToDo
