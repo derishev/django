@@ -6,7 +6,7 @@ from rest_framework import status
 from .filters import ProjectFilter, ToDoFilter
 from .models import Project, ToDo
 from .pagination import ProjectLimitOffsetPagination, ToDoLimitOffsetPagination
-from .serializers import ProjectModelSerializer, ToDoModelSerializer
+from .serializers import ProjectModelSerializer, ToDoSerializer, ToDoViewingSerializer
 
 
 class ProjectViewSet(ModelViewSet):
@@ -18,9 +18,14 @@ class ProjectViewSet(ModelViewSet):
 
 class ToDoViewSet(ModelViewSet):
     queryset = ToDo.objects.all()
-    serializer_class = ToDoModelSerializer
     pagination_class = ToDoLimitOffsetPagination
     filterset_class = ToDoFilter
+
+    def get_serializer_class(self):
+        if self.request.method in ['GET']:
+            return ToDoViewingSerializer
+        else:
+            return ToDoSerializer
 
     def destroy(self, request, *args, **kwargs):
         try:

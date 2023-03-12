@@ -24,9 +24,18 @@ class ProjectModelSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ToDoModelSerializer(serializers.HyperlinkedModelSerializer):
+class ToDoViewingSerializer(serializers.HyperlinkedModelSerializer):
     author = CustomUserModelSerializer(read_only=True)
+
+    class Meta:
+        model = ToDo
+        fields = '__all__'
+
+
+class ToDoSerializer(serializers.HyperlinkedModelSerializer):
+    author = serializers.PrimaryKeyRelatedField(read_only=True)
     is_active = serializers.BooleanField(read_only=True)
+    project = serializers.PrimaryKeyRelatedField(queryset=Project.objects.all())
 
     class Meta:
         model = ToDo
