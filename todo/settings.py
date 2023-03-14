@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     # ------------------------------
     # External libraries
     'corsheaders',  # Cross-Origin Resource Sharing
+    'graphene_django',
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
@@ -215,4 +216,10 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+}
+
+# GraphQL configuration
+GRAPHENE = {
+    'SCHEMA': 'todo.schema_graphql.schema',
+    'ATOMIC_MUTATIONS': True,
 }
