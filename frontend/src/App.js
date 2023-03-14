@@ -12,7 +12,7 @@ import {getResponseStatus, PageNotFound404} from "./components/Base";
 import Cookies from "universal-cookie/lib";
 
 
-const SERVER_URL = 'http://127.0.0.1:8000/'
+const SERVER_URL = 'http://127.0.0.1:8000/api/'
 
 
 class App extends React.Component {
@@ -84,7 +84,7 @@ class App extends React.Component {
     }
 
     getServerToken(username, password) {
-        fetch(`${SERVER_URL}api-token-auth/`, {
+        fetch(`${SERVER_URL}token-auth/`, {
             method: 'POST',
             mode: 'cors',
             headers: {

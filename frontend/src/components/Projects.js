@@ -62,7 +62,7 @@ const ProjectDetail = ({headers}) => {
 
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/projects/${id}`, {headers})
+        fetch(`http://127.0.0.1:8000/api/projects/${id}`, {headers})
             .then(response => response.json())
             .then((res) => setState(res)).catch(error => console.log(error))
     }, [id])

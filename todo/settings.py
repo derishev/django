@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django_filters',
     'rest_framework_simplejwt',
+    'drf_yasg',
     # ------------------------------
     # Custom applications
     'users.apps.UsersConfig',
@@ -67,7 +68,7 @@ ROOT_URLCONF = 'todo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -169,7 +170,13 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ]
+    ],
+
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning',
+    # 'VERSION_PARAM': 'ver',
+    'DEFAULT_VERSION': 'v1',
+    'ALLOWED_VERSIONS': ['v1', 'v2'],
+
 }
 
 if DEBUG:
