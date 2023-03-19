@@ -19,7 +19,7 @@ class ProjectViewSet(ModelViewSet):
 
 class ToDoViewSet(ModelViewSet):
     """Controller for working with information **about project notes**"""
-    queryset = ToDo.objects.all()
+    queryset = ToDo.objects.filter(is_active=True)
     pagination_class = ToDoLimitOffsetPagination
     filterset_class = ToDoFilter
 

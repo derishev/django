@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-export default class Login extends React.Component {
+export default class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -18,13 +18,13 @@ export default class Login extends React.Component {
 
     handleSubmit(event) {
         // console.log('submitLoginState', this.state);
-        this.props.callback(this.state.username, this.state.password);
+        this.props.login(this.state.username, this.state.password);
         event.preventDefault();
     }
 
     render() {
         return (
-            <div className="Login">
+            <div className="main-container text-center">
                 <form onSubmit={(event) => this.handleSubmit(event)}>
                     <div className="mb-3">
                         <label htmlFor="username" className="form-label">Username</label>

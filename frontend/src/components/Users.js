@@ -4,7 +4,7 @@ import React from 'react'
 const UserItem = ({item}) => {
     return (
         <tr>
-            <td scope={"row"}>
+            <td>
                 {item.username}
             </td>
             <td>
@@ -25,26 +25,26 @@ const UserItem = ({item}) => {
 
 const UserList = ({items}) => {
     return (
-        <div className={"container"}>
-            <table className={"table table-bordered table-hover"}>
-                <thead className={"table-light"}>
+        <div className="main-container">
+            <table className="table table-bordered table-hover">
+                <thead className="table-light">
                 <tr>
-                    <th scope={"col"}>
+                    <th>
                         Username
                     </th>
-                    <th scope={"col"}>
+                    <th>
                         First name
                     </th>
-                    <th scope={"col"}>
+                    <th>
                         Last name
                     </th>
-                    <th scope={"col"}>
+                    <th>
                         Email
                     </th>
                 </tr>
                 </thead>
                 <tbody>
-                {items.map((item, index) => <UserItem item={item} key={index}/>)}
+                    {items.map((item, index) => <UserItem item={item} key={index}/>)}
                 </tbody>
             </table>
         </div>
